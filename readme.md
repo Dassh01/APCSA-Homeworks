@@ -1,2 +1,3 @@
 # APCSA Homeworks/Projects
-All assignments are localized to a branch
+Homeworks under /homeworks
+Projects under /projects
