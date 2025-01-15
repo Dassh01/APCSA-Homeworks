@@ -4,11 +4,15 @@ import java.util.Random;
 
 public class BankAccount {
 
+    final int accessLimit = 20;
+
     private long balance;
     private double interestRate;
     public int accountNumber;
     private Bank bank;
     private String ownerName;
+    private int timesAccessed;
+    private boolean exceededFreeAccessLimit;
 
     /**
      * Constructs bank account given inital balance and inital name
@@ -19,6 +23,22 @@ public class BankAccount {
     public BankAccount(long balance, String owner) {
         this.ownerName = owner;
         this.balance = balance;
+        accountNumber = makeAccountID();
+    }
+
+    public void updateFreeAccessLimit() {
+        timesAccessed += 1;
+        exceededFreeAccessLimit = timesAccessed > accessLimit;
+    }
+
+    public void deposit(long depositAmtDlrs) {
+        balance += depositAmtDlrs;
+        updateFreeAccessLimit();
+    }
+
+    public void withdraw(long withdrawAmtDlrs) {
+        balance -= withdrawAmtDlrs;
+        updateFreeAccessLimit();
     }
 
     /**
@@ -44,6 +64,7 @@ public class BankAccount {
         balance = (long) (balance * (interestRate/100 + 1));
     }
 
+    //Why did you have us make this??
     private static int makeAccountID() {
         StringBuilder idCompile = new StringBuilder();
         Random rand = new Random();
@@ -55,18 +76,35 @@ public class BankAccount {
     }
 
     /**
+     * Deducts monthly charge, returns true if monthly charges were deducted, returns false if user
+     * still had free accesses left
+     * @return true if monthly charges were deducted, false if they weren't
+     */
+    public boolean deductMonthlyCharge() {
+        if (timesAccessed <= 20) {
+            timesAccessed = 0;
+            return false;
+        }
+        else {
+            timesAccessed = 0;
+            balance -= (20 * (accessLimit - timesAccessed)); //Charges $20 for every access over the free charges limit
+            return true;
+        }
+    }
+    /**
      * Report bank account information
      * @return Bank account information as string
      */
     @Override
     public String toString() {
         return "BankAccount{" +
-                "balance=" + balance +
-                ", interestRate=" + interestRate +
-                ", accountNumber=" + accountNumber +
-                ", bank=" + bank +
-                ", ownerName='" + ownerName + '\'' +
-                '}';
+                "\nbalance=" + balance +
+                ",\ninterestRate=" + interestRate +
+                ", \naccountNumber=" + accountNumber +
+                ", \nbank=" + bank +
+                ", \nownerName='" + ownerName +
+                ", \nFree transactions left = " + (accessLimit - timesAccessed) +
+                "\n}";
     }
 
 }
