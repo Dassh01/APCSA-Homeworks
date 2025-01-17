@@ -1,7 +1,6 @@
 package ZooLights.Objects;
 
 import ZooLights.Helpers.Name;
-import ZooLights.Helpers.modeOfTransport;
 
 public class Guest {
 

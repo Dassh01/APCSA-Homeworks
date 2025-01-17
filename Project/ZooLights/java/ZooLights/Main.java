@@ -1,9 +1,9 @@
 package ZooLights;
 
-import ZooLights.Helpers.AnsiEscapeCodes;
 import ZooLights.Helpers.Utils;
-import ZooLights.Helpers.modeOfTransport;
-import ZooLights.Objects.*;
+import ZooLights.Objects.Date;
+import ZooLights.Objects.Party;
+import ZooLights.Objects.TicketGroup;
 
 import java.util.ArrayList;
 import java.util.Scanner;

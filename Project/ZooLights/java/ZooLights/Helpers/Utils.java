@@ -1,5 +1,7 @@
 package ZooLights.Helpers;
 
+import ZooLights.Objects.*;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -8,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.function.Function;
 import java.util.function.Supplier;
-import ZooLights.Objects.*;
 
 import static ZooLights.Main.debug;
 

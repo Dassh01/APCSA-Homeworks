@@ -1,8 +1,10 @@
 package ZooLights.Objects;
 
 import ZooLights.Helpers.modeOfTransport;
-import static ZooLights.Main.debug;
+
 import java.util.Random;
+
+import static ZooLights.Main.debug;
 
 //TODO: Make ticket class
 
@@ -47,7 +49,6 @@ public class Ticket {
         }
     }
 
-     */
     public String getTicketInfo() {
         return (
                 "Ticket of guest: " + name +

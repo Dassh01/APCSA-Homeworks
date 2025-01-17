@@ -1,9 +1,10 @@
 package ZooLights.Objects;
 
 import ZooLights.Helpers.modeOfTransport;
-import static ZooLights.Helpers.Utils.isWeekend;
 
 import java.util.ArrayList;
+
+import static ZooLights.Helpers.Utils.isWeekend;
 
 public class Party {
     public ArrayList<Guest> guestList = new ArrayList<>();

@@ -1,7 +1,5 @@
 package ZooLights.Objects;
 
-import ZooLights.Helpers.modeOfTransport;
-
 import java.util.ArrayList;
 
 public class TicketGroup {
