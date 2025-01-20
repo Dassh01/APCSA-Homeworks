@@ -12,7 +12,7 @@ import java.util.Scanner;
 Name: Luke Tye, Jack Fryer, Henry Felsted, Beatrice Gilfix
 Date: 12/17/24
 Assignment: Zoo Lights Ticket Generator
- */
+*/
 
 public class Main extends Utils {
 
