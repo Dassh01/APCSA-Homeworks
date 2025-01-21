@@ -113,4 +113,33 @@ for (int i = 0; i < (data.length-1); ++i) {
     this.i = i;
         }
 ```
+## Exercise 7.12:
+### Problem A)
+```java
+int sum = 0;
+for (int num : data) {
+    sum += num;
+}
+```
+### Problem B)
+```java
+int iter = 0;
+int sum = 0;
+for (int num : data) {
+    if (iter == 0) {
+       continue; 
+    }
+    sum += num;
+}
+```
+### Problem C)
+```java
+int iter = -1
+for (int num : data) {
+    ++iter;
+    if (target == num) {
+        return iter;
+    }
+}
+```
 
