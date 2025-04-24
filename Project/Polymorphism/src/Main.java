@@ -9,7 +9,7 @@ public class Main {
      */
 
     //Define the polymorphism classes
-    public class Processor {
+    public class Processor extends beaUtils {
         private final int cores;
         private final int wattageMax;
         private final int clockSpeed;
@@ -27,6 +27,7 @@ public class Main {
 
         //Method to be overriden
         public float additiveFLOP(float a, float b) {
+            halt(500); //Default processor wait times
             return a + b;
         }
 
@@ -55,12 +56,16 @@ public class Main {
 
     public class CentralProcessor extends Processor {
         public enum Architecure {
-            x86,
-            ARM,
-            POWERPC,
-            TRICORE,
-            MIPS,
-            COLDFIRE,
+            x86("x86"),
+            ARM("ARM"),
+            POWERPC("POWERPC"),
+            TRICORE("TRICORE"),
+            MIPS("MIPS"),
+            COLDFIRE("COLDFIRE");
+
+            private final String architectureName;
+
+            Architecure(String architectureName) { this.architectureName = architectureName; }
         }
 
         private Architecure architecture = null;
@@ -74,6 +79,27 @@ public class Main {
             return architecture;
         }
 
+        @Override
+        public float additiveFLOP(float a, float b) {
+            halt(1000);
+            return a + b;
+        }
+
+        @Override
+        public String toString() {
+            return "Cores: " + super.getCores() +
+                    "Wattage Max: " + super.getWattageMax() +
+                    "Clock Speed: " + super.getClockSpeed() +
+                    "Architecture: " + architecture;
+        }
+
+        @Override
+        public boolean equals(Object hopefullyAnotherCentralProcessorInstancedObject) {
+             if (hopefullyAnotherCentralProcessorInstancedObject instanceof CentralProcessor otherCentralProcessor) {
+                 return super.equals(otherCentralProcessor) && architecture.equals(otherCentralProcessor.getArchitecture());
+             }
+             return false;
+        }
 
 
     }
