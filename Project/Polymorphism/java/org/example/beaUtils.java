@@ -1,3 +1,5 @@
+package org.example;
+
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.function.Function;

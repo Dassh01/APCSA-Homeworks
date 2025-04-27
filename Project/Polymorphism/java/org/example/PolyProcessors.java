@@ -1,5 +1,6 @@
+package org.example;
 
-public class Processors {
+public class PolyProcessors {
     /*
     Project outline:
     Superclass: Processor
@@ -8,7 +9,7 @@ public class Processors {
      */
 
     //Define the polymorphism classes
-    public class Processor extends beaUtils {
+    public static class Processor extends beaUtils {
         private final int cores;
         private final int wattageMax;
         private final int clockSpeed;
@@ -53,7 +54,7 @@ public class Processors {
 
     }
 
-    public class CentralProcessor extends Processor {
+    public static class CentralProcessor extends Processor {
         public enum Architecure {
             x86("x86"),
             ARM("ARM"),
@@ -65,6 +66,10 @@ public class Processors {
             private final String architectureName;
 
             Architecure(String architectureName) { this.architectureName = architectureName; }
+
+            public String toString() {
+                return architectureName;
+            }
         }
 
         private Architecure architecture = null;
@@ -87,22 +92,24 @@ public class Processors {
         @Override
         public String toString() {
             return "Cores: " + super.getCores() +
-                    "Wattage Max: " + super.getWattageMax() +
-                    "Clock Speed: " + super.getClockSpeed() +
-                    "Architecture: " + architecture;
+                    "\nWattage Max: " + super.getWattageMax() +
+                    "\nClock Speed: " + super.getClockSpeed() +
+                    "\nArchitecture: " + architecture;
         }
 
         @Override
         public boolean equals(Object hopefullyAnotherCentralProcessorInstancedObject) {
             if (hopefullyAnotherCentralProcessorInstancedObject instanceof CentralProcessor otherCentralProcessor) {
-                return super.equals(otherCentralProcessor) && architecture.equals(otherCentralProcessor.getArchitecture());
+                boolean superEquals = super.equals(otherCentralProcessor);
+                boolean architectureEquals = ((otherCentralProcessor.getArchitecture().toString().equals(architecture.toString())));
+                return superEquals && architectureEquals;
             }
             return false;
         }
 
     }
 
-    public class GraphicsProcessor extends Processor {
+    public static class GraphicsProcessor extends Processor {
         boolean supportsRaytracing;
 
         public GraphicsProcessor(int cores, int wattageMax, int clockSpeed, boolean supportsRaytracing) {
@@ -123,9 +130,9 @@ public class Processors {
         @Override
         public String toString() {
             return "Cores: " + super.getCores() +
-                    "Wattage Max: " + super.getWattageMax() +
-                    "Clock Speed: " + super.getClockSpeed() +
-                    "Supports Raytracing?: " + supportsRaytracing;
+                    "\nWattage Max: " + super.getWattageMax() +
+                    "\nClock Speed: " + super.getClockSpeed() +
+                    "\nSupports Raytracing?: " + supportsRaytracing;
         }
 
         @Override
@@ -136,4 +143,5 @@ public class Processors {
             return false;
         }
     }
+
 }
