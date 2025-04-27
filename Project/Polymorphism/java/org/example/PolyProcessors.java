@@ -9,7 +9,7 @@ public class PolyProcessors {
      */
 
     //Define the polymorphism classes
-    public static class Processor extends beaUtils {
+    public static class Processor extends beaUtils { //Superclass
         private final int cores;
         private final int wattageMax;
         private final int clockSpeed;
@@ -26,6 +26,14 @@ public class PolyProcessors {
         public int getClockSpeed() { return clockSpeed; }
 
         //Method to be overriden
+
+        /**
+         * Performs a floating point addition operation between params a & b
+         * with a delay of 500ms
+         * @param a To be added to b
+         * @param b To be added to a
+         * @return a + b
+         */
         public float additiveFLOP(float a, float b) {
             halt(500); //Default processor wait times
             return a + b;
@@ -54,8 +62,8 @@ public class PolyProcessors {
 
     }
 
-    public static class CentralProcessor extends Processor {
-        public enum Architecure {
+    public static class CentralProcessor extends Processor { //Subclass 1
+        public enum Architecure { //Description of cpu structure
             x86("x86"),
             ARM("ARM"),
             POWERPC("POWERPC"),
@@ -83,6 +91,13 @@ public class PolyProcessors {
             return architecture;
         }
 
+        /**
+         * Performs a floating point addition operation between params a & b
+         * with a delay of 1000ms
+         * @param a To be added to b
+         * @param b To be added to a
+         * @return a + b
+         */
         @Override
         public float additiveFLOP(float a, float b) {
             halt(1000);
@@ -109,7 +124,7 @@ public class PolyProcessors {
 
     }
 
-    public static class GraphicsProcessor extends Processor {
+    public static class GraphicsProcessor extends Processor { //Subclass 2
         boolean supportsRaytracing;
 
         public GraphicsProcessor(int cores, int wattageMax, int clockSpeed, boolean supportsRaytracing) {
@@ -121,6 +136,13 @@ public class PolyProcessors {
             return supportsRaytracing;
         }
 
+        /**
+         * Performs a floating point addition operation between params a & b
+         * with a delay of 100ms
+         * @param a To be added to b
+         * @param b To be added to a
+         * @return a + b
+         */
         @Override
         public float additiveFLOP(float a, float b) {
             halt(100);

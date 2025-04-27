@@ -9,16 +9,16 @@ public class Main {
         processors.add(new PolyProcessors.CentralProcessor(
                 15, 200, 3000,
                 PolyProcessors.CentralProcessor.Architecure.TRICORE
-        ));
+        )); //CPU 1
         processors.add(new PolyProcessors.GraphicsProcessor(
                 1600, 500, 350, true
-        ));
+        )); //GPU 1
         processors.add(new PolyProcessors.CentralProcessor(
                 15, 200, 3000,
                 PolyProcessors.CentralProcessor.Architecure.TRICORE
-        ));
+        )); //CPU 2
 
-        for (PolyProcessors.Processor processor : processors) {
+        for (PolyProcessors.Processor processor : processors) { //View all present processors
             System.out.println(processor + "\n");
             processor.additiveFLOP(100f, 200f);
         }
